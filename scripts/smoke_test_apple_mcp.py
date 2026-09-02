@@ -144,7 +144,7 @@ def main() -> None:
             subprocess.run(
                 [
                     "/usr/bin/python3",
-                    "/Users/matty/Documents/ai_projects/pinescript/plugins/apple-calendar/scripts/apple_calendar.py",
+                    str(ROOT / "plugins" / "apple-calendar" / "scripts" / "apple_calendar.py"),
                     "delete-event",
                     "--id",
                     created_event_id,
@@ -158,7 +158,7 @@ def main() -> None:
             subprocess.run(
                 [
                     "/usr/bin/python3",
-                    "/Users/matty/Documents/ai_projects/pinescript/plugins/apple-reminders/scripts/apple_reminders.py",
+                    str(ROOT / "plugins" / "apple-reminders" / "scripts" / "apple_reminders.py"),
                     "delete",
                     "--id",
                     created_reminder_id,

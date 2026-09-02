@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 
-ROOT = Path("/Users/matty/Documents/ai_projects/pinescript")
+ROOT = Path(__file__).resolve().parents[3]
 CAL_PATH = ROOT / "plugins" / "apple-calendar" / "scripts" / "apple_calendar.py"
 REM_PATH = ROOT / "plugins" / "apple-reminders" / "scripts" / "apple_reminders.py"
 PROTOCOL_VERSION = "2024-11-05"
