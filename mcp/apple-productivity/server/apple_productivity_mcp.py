@@ -104,6 +104,11 @@ def handle_calendar_list_calendars(args: dict[str, Any]) -> Any:
     return CAL._calendar_records(config)
 
 
+def handle_calendar_create_local_calendar(args: dict[str, Any]) -> Any:
+    config = CAL._load_config()
+    return CAL._run_backend(["create-local-calendar", "--title", args["title"]], config)
+
+
 def handle_calendar_list_events(args: dict[str, Any]) -> Any:
     config = CAL._load_config()
     calendars = calendar_selected_calendars(args, config)
@@ -461,6 +466,12 @@ TOOLS: dict[str, Tool] = {
         "List available Apple Calendar calendars with aliases and defaults.",
         schema({}),
         handle_calendar_list_calendars,
+    ),
+    "calendar_create_local_calendar": Tool(
+        "calendar_create_local_calendar",
+        "Create a new local-only Apple Calendar. Refuses duplicate titles.",
+        schema({"title": {"type": "string"}}, ["title"]),
+        handle_calendar_create_local_calendar,
     ),
     "calendar_list_events": Tool(
         "calendar_list_events",

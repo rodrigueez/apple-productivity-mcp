@@ -239,6 +239,28 @@ do {
     case "list-calendars":
         try emitJSON(store.calendars(for: .event).map { $0.title })
 
+    case "create-local-calendar":
+        let title = try requireArg("--title", in: args).trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !title.isEmpty else {
+            throw CalendarBackendError.message("Calendar title must not be empty.")
+        }
+        guard !store.calendars(for: .event).contains(where: { $0.title.caseInsensitiveCompare(title) == .orderedSame }) else {
+            throw CalendarBackendError.message("Calendar already exists: \(title)")
+        }
+        guard let source = store.sources.first(where: { $0.sourceType == .local }) else {
+            throw CalendarBackendError.message("No local Calendar source is available.")
+        }
+        let calendar = EKCalendar(for: .event, eventStore: store)
+        calendar.title = title
+        calendar.source = source
+        try store.saveCalendar(calendar, commit: true)
+        try emitJSON([
+            "created": true,
+            "title": calendar.title,
+            "calendarIdentifier": calendar.calendarIdentifier,
+            "sourceType": "local"
+        ])
+
     case "list-events":
         let calendarNames = try jsonArrayArg("--calendars-json", in: args)
         let start = try parseISODate(requireArg("--start-iso", in: args))

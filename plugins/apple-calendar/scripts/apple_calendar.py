@@ -848,6 +848,8 @@ def _build_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     subparsers.add_parser("list-calendars", help="List Calendar.app calendars")
+    create_calendar = subparsers.add_parser("create-local-calendar", help="Create a local Calendar.app calendar")
+    create_calendar.add_argument("--title", required=True, help="New calendar title")
 
     list_events = subparsers.add_parser("list-events", help="List events in a date window")
     list_events.add_argument("--calendar", action="append", help="Calendar name or alias")
@@ -1016,6 +1018,10 @@ def main() -> None:
 
     if args.command == "list-calendars":
         _print_json(_calendar_records(config))
+        return
+
+    if args.command == "create-local-calendar":
+        _print_json(_run_backend(["create-local-calendar", "--title", args.title], config))
         return
 
     if args.command == "list-events":
