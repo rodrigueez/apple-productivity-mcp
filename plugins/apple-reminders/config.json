@@ -1,17 +1,11 @@
 {
-  "defaultWriteList": "To Do",
-  "defaultReadLists": [
-    "To Do",
-    "Tarifix",
-    "Dovolená"
-  ],
+  "defaultWriteList": "",
+  "defaultReadLists": [],
   "listAliases": {
-    "todo": "To Do",
-    "to do": "To Do",
-    "inbox": "To Do",
-    "tarifix": "Tarifix",
-    "dovolena": "Dovolená",
-    "dovolená": "Dovolená"
+    "todo": "Default",
+    "inbox": "Default",
+    "work": "Work & Schoolwork",
+    "life": "Life & Routines"
   },
   "lockTimeoutSeconds": 12,
   "commandTimeoutSeconds": 45,

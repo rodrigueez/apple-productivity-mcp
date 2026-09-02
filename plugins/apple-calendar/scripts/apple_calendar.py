@@ -396,6 +396,8 @@ def _resolve_selected_calendars(
 
 def _resolve_write_calendar(calendar_name: str | None, config: dict) -> str:
     target = calendar_name or config["defaultWriteCalendar"]
+    if not target:
+        raise SystemExit("Specify a calendar when creating or importing events.")
     return _resolve_single_calendar_name(target, _available_calendar_names(), config)
 
 

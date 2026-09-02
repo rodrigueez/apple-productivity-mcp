@@ -75,7 +75,7 @@ def main() -> None:
                 "params": {
                     "name": "calendar_add_event",
                     "arguments": {
-                        "calendar": "doma",
+                        "calendar": "home",
                         "title": event_title,
                         "date": "2026-03-30",
                         "start_time": "18:00",
@@ -116,7 +116,7 @@ def main() -> None:
                 "method": "tools/call",
                 "params": {
                     "name": "calendar_delete_event",
-                    "arguments": {"id": created_event_id, "calendars": ["doma"]},
+                    "arguments": {"id": created_event_id, "calendars": ["home"]},
                 },
             },
         )
@@ -149,7 +149,7 @@ def main() -> None:
                     "--id",
                     created_event_id,
                     "--calendar",
-                    "doma",
+                    "home",
                 ],
                 capture_output=True,
                 text=True,

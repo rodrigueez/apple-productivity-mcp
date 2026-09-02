@@ -294,6 +294,8 @@ def _resolve_selected_lists(requested: list[str] | None, config: dict) -> list[s
 
 def _resolve_write_list(list_name: str | None, config: dict) -> str:
     target = list_name or config["defaultWriteList"]
+    if not target:
+        raise SystemExit("Specify a list when creating reminders.")
     return _resolve_single_list_name(target, _available_list_names(), config)
 
 
